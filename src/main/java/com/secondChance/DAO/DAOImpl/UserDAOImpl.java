@@ -1,6 +1,6 @@
 package com.secondChance.DAO.DAOImpl;
 
-import com.secondChance.DAO.Interfece.UserInterface;
+import com.secondChance.DAO.Interface.UserInterface;
 import com.secondChance.Models.UserEntity;
 import com.secondChance.Util.HibernateUtil;
 import com.secondChance.Util.PasswordUtil;

@@ -1,4 +1,4 @@
-package com.secondChance.DAO.Interfece;
+package com.secondChance.DAO.Interface;
 
 import com.secondChance.Models.UserEntity;
 import java.util.List;
