@@ -17,17 +17,20 @@ public class TaskEntity implements Serializable {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "userid")
-    private String userid;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userid", referencedColumnName = "id", nullable = false)
+    private UserEntity user;
+
 
     // Default constructor
     public TaskEntity() {}
 
     // Constructor with fields
-    public TaskEntity(String name, String description, String userid) {
+    public TaskEntity(String name, String description, UserEntity user) {
         this.name = name;
         this.description = description;
-        this.userid = userid;
+        this.user = user;
     }
 
     // Getters and Setters
@@ -56,11 +59,11 @@ public class TaskEntity implements Serializable {
         this.description = description;
     }
 
-    public String getUserid() {
-        return userid;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }
