@@ -30,5 +30,6 @@
 
         <!-- Names the annotated entity classes -->
         <mapping class="com.secondChance.Models.UserEntity"/>
+        <mapping class="com.secondChance.Models.TaskEntity"/>
     </session-factory>
 </hibernate-configuration>
