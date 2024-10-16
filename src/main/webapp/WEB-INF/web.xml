@@ -1,10 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-         version="6.0">
-  <display-name>Clean Start</display-name>
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
 
-  <!-- Add your servlet mappings and other configurations here -->
+    <!-- Servlets   -->
+    <servlet>
+        <servlet-name>UserController</servlet-name>
+        <servlet-class>com.MBAREK0.web.controller.UserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Test</servlet-name>
+        <servlet-class>com.MBAREK0.web.controller.Test</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Auth</servlet-name>
+        <servlet-class>com.MBAREK0.web.controller.AuthController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Tag</servlet-name>
+        <servlet-class>com.MBAREK0.web.controller.TagController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Task</servlet-name>
+        <servlet-class>com.MBAREK0.web.controller.TaskController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DateController</servlet-name>
+        <servlet-class>com.MBAREK0.web.controller.DateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestController</servlet-name>
+        <servlet-class>com.MBAREK0.web.controller.RequestController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Test</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserController</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Auth</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Tag</servlet-name>
+        <url-pattern>/tags</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Task</servlet-name>
+        <url-pattern>/tasks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DateController</servlet-name>
+        <url-pattern>/date</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestController</servlet-name>
+        <url-pattern>/inbox</url-pattern>
+    </servlet-mapping>
+
+    <!-- filters   -->
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.MBAREK0.web.filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>ManagerFilter</filter-name>
+        <filter-class>com.MBAREK0.web.filter.ManagerFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ManagerFilter</filter-name>
+        <url-pattern>/users/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ManagerFilter</filter-name>
+        <url-pattern>/inbox/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
