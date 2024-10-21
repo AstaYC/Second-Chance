@@ -2,6 +2,7 @@ package com.MBAREK0.web.Service;
 
 import com.MBAREK0.web.entity.TaskStatus;
 import com.MBAREK0.web.entity.User;
+import com.MBAREK0.web.service.TaskService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -10,8 +11,6 @@ import org.mockito.MockitoAnnotations;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import com.MBAREK0.web.entity.Task;
-import com.MBAREK0.web.repository.implementation.TaskRepositoryImpl;
-
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,13 +24,13 @@ class TaskServiceTest {
     @Mock
     private EntityTransaction transaction;
 
-    private TaskRepositoryImpl taskRepository;
+    private TaskService taskService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
         when(entityManager.getTransaction()).thenReturn(transaction);
-        taskRepository = new TaskRepositoryImpl(entityManager);
+        taskService = new TaskService(entityManager);
         System.out.println("Test setup complete. Mocks initialized.");
     }
 
@@ -39,7 +38,7 @@ class TaskServiceTest {
     void testCreateTask() {
         // Arrange
         User user = new User();
-        user.setId(1L);
+        user.setId(7L);
         Task task = new Task();
         task.setTitle("Test Task");
         task.setDescription("This is a test task");
@@ -52,14 +51,14 @@ class TaskServiceTest {
         when(entityManager.merge(any(Task.class))).thenReturn(task);
         System.out.println("Arrange phase complete. Task created: " + task);
 
-        // Act
+
         System.out.println("Executing createTask method...");
-        Task createdTask = taskRepository.createTask(task);
+        Task createdTask = taskService.createTask(task);
         System.out.println("createTask method executed. Result: " + createdTask);
 
         System.out.println("Starting assertions...");
 
-        // Assert
+
         verify(transaction).begin();
         System.out.println("Verified: Transaction began");
         verify(entityManager).persist(task);
